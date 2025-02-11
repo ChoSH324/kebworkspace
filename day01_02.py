@@ -47,19 +47,36 @@
 #     print(f"{n} is NOT prime number")
 
 # 더 최적화
-import math as m
-n = int(input("Input Number : "))
-is_prime = True
+# import math as m
+# n = int(input("Input Number : "))
+# is_prime = True
+#
+# if n>=2:
+#     for i in range(2,int(n**0.5)+1,1): # for i in range(2, ,int(m.sqrt(n))+1,1):
+#         print(i, end=' ')
+#         if n % i ==0:
+#             is_prime=False
+#             break
+# else:
+#     is_prime =False
+# if is_prime:
+#     print(f"{n} is prime number")
+# else:
+#     print(f"{n} is NOT prime number")
 
-if n>=2:
-    for i in range(2,int(n**0.5)+1,1): # for i in range(2, ,int(m.sqrt(n))+1,1):
-        print(i, end=' ')
-        if n % i ==0:
-            is_prime=False
-            break
-else:
-    is_prime =False
-if is_prime:
+# 함수화
+def is_prime(num) -> bool: # -> bool : type hint 라고 한다 반환 자료 타입을 명시해주는 것
+    if num>=2:
+         for i in range(2,int(num**0.5)+1,1):
+             if num % i ==0:
+                return False
+    else:
+        return False
+    return True
+
+# main
+n = int(input("Input Number : "))
+if is_prime(n):
     print(f"{n} is prime number")
 else:
     print(f"{n} is NOT prime number")
