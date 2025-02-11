@@ -65,18 +65,45 @@
 #     print(f"{n} is NOT prime number")
 
 """ 소수 판정 함수화 """
-def is_prime(num) -> bool: # -> bool : type hint 라고 한다 반환 자료 타입을 명시해주는 것
-    if num>=2:
-         for i in range(2,int(num**0.5)+1,1):
-             if num % i ==0:
-                return False
-    else:
-        return False
-    return True
+# def is_prime(num) -> bool: # -> bool : type hint 라고 한다 반환 자료 타입을 명시해주는 것
+#     """
+#     A function that returns Ture if it is a prime number and False if it is not a prime number
+#     : param num : integer number
+#     : return : boolean type
+#     """
+#     if num>=2:
+#          for i in range(2,int(num**0.5)+1,1):
+#              if num % i ==0:
+#                 return False
+#     else:
+#         return False
+#     return True
+#
+# # main
+# n = int(input("Input Number : "))
+# if is_prime(n):
+#     print(f"{n} is prime number")
+# else:
+#     print(f"{n} is NOT prime number")
 
-# main
-n = int(input("Input Number : "))
-if is_prime(n):
-    print(f"{n} is prime number")
-else:
-    print(f"{n} is NOT prime number")
+#help(is_prime)
+
+# univ = "Inha university"
+# print(univ)
+# print(univ[5])
+# # univ[5] = 'U'  # immutable
+# # print(univ)
+# subjects = ['python', 'c++', 'linux', 'data structure', 'database']
+# print(subjects)
+# print(subjects[3])
+# subjects[3] = 'data structure & algorithm'  # mutable
+# print(subjects)
+
+# print(0.1)
+# print(1e-1)
+# print(0.01)
+# print(1e-2)
+# print(314.1592)
+# print(0.3141592e3)
+# print(21000)
+# print(21_000)
