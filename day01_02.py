@@ -1,6 +1,6 @@
 # 주석 처리 단축키 Ctrl + "/" (풀 때도 동일하게)
 
-# 구구단
+""" 구구단 """
 # for dan in range(2,10,1):
 #     for i in range(1,10,1):
 #         print(f"{dan} x {i} = {dan*i}")
@@ -17,7 +17,7 @@
 # for i in range(1,10,1):
 #     print(f"{dan}*{i}={dan*i}")
 
-# 소수 찾기
+""" 소수 판정 """
 # n = int(input("Input Number : "))
 # count =0
 # for i in range(1,n+1,1):
@@ -28,7 +28,7 @@
 # else:
 #     print(f"{n} is NOT prime number")
 
-# 조금 더 최적화
+""" 소수 판정 조금 최적화 """
 # n = int(input("Input Number : "))
 # is_prime = True
 #
@@ -46,7 +46,7 @@
 # else:
 #     print(f"{n} is NOT prime number")
 
-# 더 최적화
+""" 소수 판정 최적화 """
 # import math as m
 # n = int(input("Input Number : "))
 # is_prime = True
@@ -64,7 +64,7 @@
 # else:
 #     print(f"{n} is NOT prime number")
 
-# 함수화
+""" 소수 판정 함수화 """
 def is_prime(num) -> bool: # -> bool : type hint 라고 한다 반환 자료 타입을 명시해주는 것
     if num>=2:
          for i in range(2,int(num**0.5)+1,1):
