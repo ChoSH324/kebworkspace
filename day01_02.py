@@ -29,11 +29,31 @@
 #     print(f"{n} is NOT prime number")
 
 # 조금 더 최적화
+# n = int(input("Input Number : "))
+# is_prime = True
+#
+# if n>=2:
+#     for i in range(2,n,1):
+#         print(i, end=' ')
+#         if n % i ==0:
+#
+#             is_prime=False
+#             break
+# else:
+#     is_prime =False
+# if is_prime:
+#     print(f"{n} is prime number")
+# else:
+#     print(f"{n} is NOT prime number")
+
+# 더 최적화
+import math as m
 n = int(input("Input Number : "))
 is_prime = True
 
 if n>=2:
-    for i in range(2,n,1):
+    for i in range(2,int(m.sqrt(n))+1,1):
+        print(i, end=' ')
         if n % i ==0:
             is_prime=False
             break
