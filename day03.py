@@ -1,39 +1,42 @@
-import math
+import random
+drinks_foods = {"위스키": "초콜릿", "와인": "치즈", "소주": "삽겹살", "고량주": "양꼬치"}
+drinks_foods_list = [["위스키","초콜릿"],["와인","치즈"],["소주","삼겹살"],["고량주","양꼬치"]]
+# print(drinks_foods)
+# print(drinks_foods.pop("고량주"))
+# print(drinks_foods)
 
-# Last Assignment
-def my_pow(a,b):
-    return a**b
+#del drinks_foods["위스키"]
+#drinks_foods["사케"] = "광어회"
+japan_drinks_foods = {"사케": "광어회", "위스키": "낙곱새"}
+japan_drinks_foods_list=[["사케","광어회"],["위스키","낙곱새"]]
+drinks_foods.update(japan_drinks_foods)
+drinks_foods_list.extend(japan_drinks_foods_list)
+print(drinks_foods_list)
 
-def my_pow_cho(b, e) -> float:
-    """
-    A user-defined function that receives a base and exponent and returns the power result in the form of a real number
-    :param b: base number
-    :param e: exponent
-    :return: the power result in the form of a real number
-    """
-    result = 1
-    i=int(e)
+#drink = input(drinks_foods.keys())
+drinks_foods_keys = list(drinks_foods)
+# print(drinks_foods_keys)
+# #print(drinks_foods_keys.pop(0))
+# print(drinks_foods_keys.remove("위스키"))
+# print(drinks_foods_keys)
+#print(random.choice(drinks_foods_keys))
 
-    if e<0:
-        f = e - i
-        for _ in range(i):  # for k in range(e):
-            result = result * b
-        if f > 0:
-            result = result * math.exp(f * math.log(b))
-    elif e<0:
-        f = -(e - i)
-        for _ in range(-i):  # for k in range(e):
-            result = result * b
-        if f > 0:
-            result = result * math.exp(f * math.log(b))
-        result = 1 / result
-    else:
-        result = 1
+while True:
+    menu = input(f'다음 술중에 고르세요.\n1) {drinks_foods_list[0][0]}   2) {drinks_foods_list[1][0]}   3) {drinks_foods_list[2][0]}   4) {drinks_foods_list[3][0]}   5) {drinks_foods_list[4][0]}   6) 아무거나   7) 종료 : ')
+    if menu == '1':
+        print(f'{drinks_foods_list[0][0]}에 어울리는 안주는 {drinks_foods_list[0][1]} 입니다')
+    elif menu == '2':
+        print(f'{drinks_foods_list[1][0]}에 어울리는 안주는 {drinks_foods_list[1][1]} 입니다')
+    elif menu == '3':
+        print(f'{drinks_foods_list[2][0]}에 어울리는 안주는 {drinks_foods_list[2][1]} 입니다')
+    elif menu == '4':
+        print(f'{drinks_foods_list[3][0]}에 어울리는 안주는 {drinks_foods_list[3][1]} 입니다')
+    elif menu == '5':
+        print(f'{drinks_foods_list[4][0]}에 어울리는 안주는 {drinks_foods_list[4][1]} 입니다')
+    elif menu == '6':
+        random_number=random.randint(0,5)
 
-    return result
-
-# main
-print(my_pow_cho(2,9))
-print(my_pow_cho(25,0.5)) # ieee 754 규격 확인
-print(my_pow_cho(2,-2.2))
-print(my_pow_cho(2,0))
+        print(f'{drinks_foods_list[random_number][0]}에 어울리는 안주는 {drinks_foods_list[random_number][1]} 입니다')
+    elif menu == '7':
+        print(f'다음에 또 오세요')
+        break
