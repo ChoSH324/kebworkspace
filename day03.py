@@ -4,7 +4,7 @@ import math
 def my_pow(a,b):
     return a**b
 
-def my_pow_Pro(b, e) -> float:
+def my_pow_pro(b, e) -> float:
     """
     A user-defined function that receives a base and exponent and returns the power result in the form of a real number
     :param b: base number
@@ -14,7 +14,7 @@ def my_pow_Pro(b, e) -> float:
     result = 1
     i=int(e)
 
-    if e>0:
+    if e<0:
         f = e - i
         for _ in range(i):  # for k in range(e):
             result = result * b
@@ -33,7 +33,7 @@ def my_pow_Pro(b, e) -> float:
     return result
 
 # main
-print(my_pow_Pro(2,9))
-print(my_pow_Pro(25,0.5)) # ieee 754 규격 확인
-print(my_pow_Pro(2,-2.2))
-print(my_pow_Pro(2,0))
+print(my_pow_pro(2,9))
+print(my_pow_pro(25,0.5)) # ieee 754 규격 확인
+print(my_pow_pro(2,-2.2))
+print(my_pow_pro(2,0))
