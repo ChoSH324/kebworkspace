@@ -33,7 +33,7 @@ def my_pow_cho(b, e) -> float:
     return result
 
 # main
-print(my_pow_pro(2,9))
-print(my_pow_pro(25,0.5)) # ieee 754 규격 확인
-print(my_pow_pro(2,-2.2))
-print(my_pow_pro(2,0))
+print(my_pow_cho(2,9))
+print(my_pow_cho(25,0.5)) # ieee 754 규격 확인
+print(my_pow_cho(2,-2.2))
+print(my_pow_cho(2,0))
