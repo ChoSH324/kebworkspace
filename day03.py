@@ -20,15 +20,19 @@ drinks_foods_keys = list(drinks_foods)
 # print(drinks_foods_keys.remove("위스키"))
 # print(drinks_foods_keys)
 #print(random.choice(drinks_foods_keys))
-
 while True:
-    menu = input(f'다음 술중에 고르세요.\n1) {drinks_foods_list[0][0]}   2) {drinks_foods_list[1][0]}   3) {drinks_foods_list[2][0]}   4) {drinks_foods_list[3][0]}   5) {drinks_foods_list[4][0]}   6) 아무거나   7) 종료 : ')
+    print("다음 술 중에 고르세요")
+    for i in range(1,len(drinks_foods_list)+1):
+        print(f'{i}){drinks_foods_list[i-1][0]}', end = " ")
+    print(f'{len(drinks_foods_list)+1}) 아무거나',end = " ")
+    print(f'{len(drinks_foods_list)+2}) 종료 : ')
+    menu = input()
     menu = int(menu)
-    if 1<menu<6:
+    if 1<=menu<len(drinks_foods_list):
         print(f'{drinks_foods_list[menu-1][0]}에 어울리는 안주는 {drinks_foods_list[menu-1][1]} 입니다')
-    elif menu == 6:
-        random_number=random.randint(0,5)
+    elif menu == len(drinks_foods_list)+1:
+        random_number=random.randint(0,len(drinks_foods_list))
         print(f'{drinks_foods_list[random_number][0]}에 어울리는 안주는 {drinks_foods_list[random_number][1]} 입니다')
-    elif menu == 7:
+    elif menu == len(drinks_foods_list)+2:
         print(f'다음에 또 오세요')
         break
