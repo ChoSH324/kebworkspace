@@ -13,8 +13,7 @@ while True:
     print("다음 술 중에 고르세요")
     for i in range(1,len+1):
         print(f'{i}){drinks_foods_list[i-1][0]}', end = " ")
-    print(f'{len+1}) 아무거나',end = " ")
-    print(f'{len+2}) 종료 : ')
+    print(f'{len+1}) 아무거나 {len+2} 종료 : ')
     menu = input()
     menu = int(menu)
     if 1<=menu<=len:
