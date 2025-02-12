@@ -31,7 +31,7 @@ while True:
     if 1<=menu<=len(drinks_foods_list):
         print(f'{drinks_foods_list[menu-1][0]}에 어울리는 안주는 {drinks_foods_list[menu-1][1]} 입니다')
     elif menu == len(drinks_foods_list)+1:
-        random_number=random.randint(0,len(drinks_foods_list))
+        random_number=random.randint(0,len(drinks_foods_list)-1)
         print(f'{drinks_foods_list[random_number][0]}에 어울리는 안주는 {drinks_foods_list[random_number][1]} 입니다')
     elif menu == len(drinks_foods_list)+2:
         print(f'다음에 또 오세요')
