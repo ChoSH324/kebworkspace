@@ -13,15 +13,27 @@ def my_pow_Pro(b, e) -> float:
     """
     result = 1
     i=int(e)
-    f=e-i
 
-    for _ in range(i): # for k in range(e):
-        result = result * b
-    if f > 0:
-        result = result*math.exp(f*math.log(b))
+    if e>0:
+        f = e - i
+        for _ in range(i):  # for k in range(e):
+            result = result * b
+        if f > 0:
+            result = result * math.exp(f * math.log(b))
+    elif e<0:
+        f = -(e - i)
+        for _ in range(-i):  # for k in range(e):
+            result = result * b
+        if f > 0:
+            result = result * math.exp(f * math.log(b))
+        result = 1 / result
+    else:
+        result = 1
+
     return result
 
 # main
 print(my_pow_Pro(2,9))
-print(my_pow_Pro(3,4.5))
 print(my_pow_Pro(25,0.5)) # ieee 754 규격 확인
+print(my_pow_Pro(2,-2.2))
+print(my_pow_Pro(2,0))
