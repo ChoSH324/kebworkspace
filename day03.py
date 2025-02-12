@@ -4,7 +4,7 @@ import math
 def my_pow(a,b):
     return a**b
 
-def my_pow_pro(b, e) -> float:
+def my_pow_cho(b, e) -> float:
     """
     A user-defined function that receives a base and exponent and returns the power result in the form of a real number
     :param b: base number
