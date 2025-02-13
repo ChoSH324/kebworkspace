@@ -9,8 +9,8 @@ def log_decorator(f):
 
 
 @log_decorator
-def greet(name, greeting = "안녕하세요",**kwargs):
-    return f"{greeting}, {name}"
+def greet(name, greeting = "안녕하세요",age = None):#age = 0
+    return f"{greeting}, {name}(age : {age})"if age else f"{greeting},{name}"
 
 print(greet("인하"))
 print(greet("인하","곤방와"))
