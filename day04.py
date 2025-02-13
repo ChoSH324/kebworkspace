@@ -1,48 +1,17 @@
-import time
-# decorator
-def description(f):  # closure
-    def inner(*args):
-        print(f.__name__)
-        print(f.__doc__)
-        r = f(*args)
-        return r
-
-    return inner
-
-
-def time_decorator(func):
-    def wrapper(*arg):
-        s = time.time()
-        r = func(*arg)
-        e = time.time()
-        print(f'실행시간 : {e - s}초')
-        return r
+def log_decorator(f):
+    def wrapper(*args,**kwargs):
+        print(f'Function Name : {f.__name__}')
+        print(f'Function Arguments : {args}')
+        print(f'Function Keyword Arguments : {kwargs}')
+        result = f(*args,**kwargs)
+        return result
     return wrapper
 
-#@time_decorator
-#@description
-def squares(n):
-    """
-    제곱 함수
-    """
-    return n * n
 
+@log_decorator
+def greet(name, greeting = "안녕하세요",**kwargs):
+    return f"{greeting}, {name}"
 
-
-f1 = squares(2)
-f2 = description(time_decorator(squares))
-print(f1)
-print(f2(3))
-# squares(4)가 먼저 진행하여 time_decorator의 인자로 16을 주므로 의도되로 진행X
-print(description(time_decorator(squares(4))))
-# 2중 데코레이터 적용 가장 쉬운 방법
-@time_decorator
-@description  # 데코레이터를 쓰는 순서로도 차이를 보인다
-# description 함수 호출에 대한 걸 마지막에 씌워야 한다
-def squares1(n):
-    """
-    제곱 함수
-    """
-    return n * n
-
-print(squares1(5))
+print(greet("인하"))
+print(greet("인하","곤방와"))
+print(greet("James","Hello",age=29))
