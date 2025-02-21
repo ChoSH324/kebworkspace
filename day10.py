@@ -1,67 +1,26 @@
-import time
-import random
+n, k = map(int, input().split())
 
-def time_decorator(func):
-    def wrapper(*arg):
-        s = time.time()
-        r = func(*arg)
-        e = time.time()
-        print(f'실행시간 : {e - s}초')
-        return r
-    return wrapper
+list_1 = [i + 1 for i in range(n)]
+list_2 = [0] * n  # 0은 생존, 1은 제거
 
+current = 0  # 현재 위치
+count = 0  # 제거된 사람 수
 
-@time_decorator
-def insertion_sort(l):
-    for i in range(1, len(l)):
-        value = l[i]
-        while i > 0 and l[i-1] > value:
-            l[i] = l[i-1]
-            i = i - 1
-            #print(i, end=' ')
-        l[i] = value
-    return l
+print('<', end='')
+for _ in range(n):  # n명이 모두 제거될 때까지 반복
+    inner_count = 0  # k번째 사람을 세기 위한 카운트
+    i = 0
+    while inner_count < k:
+        index = (current + i) % n  # 현재 위치에서 탐색 시작
+        if list_2[index] == 0:  # 아직 제거되지 않은 사람인 경우
+            inner_count += 1
+        i += 1
 
+    list_2[index] = 1  # 제거 표시
+    print(list_1[index], end='')  # list_1에서 값을 바로 출력
+    if count < n - 1:
+        print(', ', end='')  # 마지막이 아니면 쉼표 출력
+    current = (index + 1) % n  # 다음 시작 위치 업데이트
+    count += 1  # 제거된 사람 수 증가
 
-@time_decorator
-def bubble_sort(l):
-    for i in range(len(l) - 1):
-        no_swap = True
-        for j in range(len(l) - 1 - i):
-            if l[j] > l[j+1]:
-                l[j], l[j + 1] = l[j+1], l[j]
-                no_swap = False
-                #print(j, end=' ')
-        if no_swap:
-            return l
-    return l
-
-
-def quick_sort(l):
-    n = len(l)
-    if n<=1: return l
-    pivot = l[n//2]
-    left,right=list(),list()
-    for i in l :
-        if i < pivot:
-            left.append(i)
-        elif i < pivot:
-            right.append(i)
-    return quick_sort(left)+[pivot]+quick_sort(right)
-
-
-lists1 = [random.randint(1, 100000) for _ in range(10000)]
-lists2 = lists1.copy()
-lists3 = lists1.copy()
-
-print("bubble_sort")
-bubble_sort(lists1)
-
-print("insertion_sort")
-insertion_sort(lists2)
-
-print("quick_sort")
-s = time.time()
-quick_sort(lists3)
-e = time.time()
-print(e-s)
+print('>')
