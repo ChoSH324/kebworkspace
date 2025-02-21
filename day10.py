@@ -65,4 +65,3 @@ s = time.time()
 quick_sort(lists3)
 e = time.time()
 print(e-s)
-
