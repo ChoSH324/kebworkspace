@@ -1,93 +1,123 @@
+# Assignment
+# v4.4) v4.3 버전의 출력 방식을 너비 우선 탐색으로 수정하시오.
+from collections import deque
+
 class TreeNode:
-    def __init__(self):
-        self.left = None
-        self.data = None
-        self.right = None
+	def __init__(self):
+		self.left = None
+		self.data = None
+		self.right = None
 
 
-def delete(parent, current, delete_data):
-    if current is None:
-        return False  # 삭제할 노드를 찾지 못함
+def insert(root, value):
+    if root is None:
+        node = TreeNode()
+        node.data = value
+        return node
 
-    if delete_data < current.data:
-        return delete(current, current.left, delete_data)  # 왼쪽 서브트리로 이동
-    elif delete_data > current.data:
-        return delete(current, current.right, delete_data)  # 오른쪽 서브트리로 이동
-    else:  # 삭제할 노드를 찾음
-        # Case 1: 자식 노드가 없는 경우
-        if current.left is None and current.right is None:
-            if parent:  # parent가 None이 아닌 경우에만 실행
-                if parent.left == current:
-                    parent.left = None
-                else:
-                    parent.right = None
-            return True
-        # Case 2: 자식 노드가 하나인 경우
-        elif current.left is None:
-            if parent:
-                if parent.left == current:
-                    parent.left = current.right
-                else:
-                    parent.right = current.right
-            return True
-        elif current.right is None:
-            if parent:
-                if parent.left == current:
-                    parent.left = current.left
-                else:
-                    parent.right = current.left
-            return True
-        # Case 3: 자식 노드가 두 개인 경우
+    if value < root.data:
+        root.left = insert(root.left, value)
+    else:
+        root.right = insert(root.right, value)
+    return root
+
+
+def search(root, value):
+    current = root
+    while current:
+        if value == current.data:
+            return current
+        elif value < current.data:
+            current = current.left
         else:
-            # 오른쪽 서브트리에서 가장 작은 값을 찾습니다.
-            successor_parent, successor = find_min(current, current.right)
-            # 삭제할 노드의 값을 successor의 값으로 변경합니다.
-            current.data = successor.data
-
-            # successor를 삭제합니다.
-            if successor_parent.left == successor:
-                successor_parent.left = successor.right
-            else:
-                successor_parent.right = successor.right
-            return True
+            current = current.right
+    return None
 
 
-def find_min(parent, node):
+# def post_order(node):
+#     if node is None:
+#         return
+#     post_order(node.left)
+#     post_order(node.right)
+#     print(f"{node.data} ", end='')
+
+def bfs(node):
+    if node is None:
+        return
+
+    queue = deque([node])
+    while queue:
+        current = queue.popleft()
+        print(f"{current.data}", end=' ')
+        if current.left:
+            queue.append(current.left)
+        if current.right:
+            queue.append(current.right)
+
+
+def delete(root, value):
+    if root is None:
+        return root
+    if value < root.data:
+        root.left = delete(root.left, value)
+    elif value > root.data:
+        root.right = delete(root.right, value)
+    else:
+        if root.left is None and root.right is None:
+            return None
+        elif root.left is None:
+            return root.right
+        elif root.right is None:
+            return root.left
+        else:
+            root.data = find_min(root.right).data
+            root.right = delete(root.right, root.data)
+    return root
+
+
+def find_min(node):
     current = node
     while current.left is not None:
-        parent = current
         current = current.left
-    return parent, current
+    return current
 
 
 if __name__ == "__main__":
-    numbers = [10, 15, 8, 3, 9, 6, 2, 16]
+    numbers = [10, 15, 8, 3, 9]
+    root = None
 
-    node = TreeNode()
-    node.data = numbers[0]
-    root = node
+    for number in numbers:
+        root = insert(root, number)
 
-    for group in numbers[1:]:
-        node = TreeNode()
-        node.data = group
-        current = root
-        while True:
-            if group < current.data:
-                if current.left is None:
-                    current.left = node
-                    break
-                current = current.left  # move
+    while True:
+        print("\n--- 트리 관리 메뉴 ---")
+        print("1. 값 삽입")
+        print("2. 값 삭제")
+        print("3. 값 찾기")
+        print("4. 트리 확인 (BFS)")
+        print("5. 종료")
+        choice = input("원하는 작업을 선택하세요: ")
+        if choice == '1':
+            value = int(input("삽입할 값을 입력하세요: "))
+            root = insert(root, value)
+            print(f"{value} 삽입 완료")
+        elif choice == '2':
+            value = int(input("삭제할 값을 입력하세요: "))
+            if search(root, value):
+                root = delete(root, value)
+                print(f"{value} 삭제 완료")
             else:
-                if current.right is None:
-                    current.right = node
-                    break
-                current = current.right  # move
-
-    print("BST 구성 완료")
-
-    # 삭제 기능 테스트
-    delete(None, root, 10)  # 루트 노드 삭제
-    print("삭제 완료")
-
-
-    # (optional) 삭제 후 트리가 정확한지 확인하기 위해 트리를 순회하는 함수를 추가할 수 있습니다.
+                print(f"{value}은(는) 트리에 존재하지 않습니다.")
+        elif choice == '3':
+            value = int(input("찾고 싶은 값을 입력하세요: "))
+            if search(root, value):
+                print(f"{value}을(를) 찾았습니다.")
+            else:
+                print(f"{value}이(가) 존재하지 않습니다.")
+        elif choice == '4':
+            bfs(root)
+        elif choice == '5':
+            print("프로그램을 종료합니다.")
+            break
+        else:
+            print("잘못된 선택입니다. 다시 선택하세요.")
