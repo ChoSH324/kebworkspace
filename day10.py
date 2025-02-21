@@ -1,33 +1,11 @@
-def bubble_sort_1(a_list):
-    list_length = len(a_list) -1
-    for i in range(list_length):
-        for j in range(list_length):
-            if a_list[j] > a_list [j+1]:
-                a_list[j],a_list[j+1] = a_list[j+1], a_list[j]
+def insertion_sort(a_list):
+    for i in range(1,len(a_list)):
+        value = a_list[i]
+        while i > 0 and a_list[i-1] > value:
+            a_list[i] = a_list[i-1]
+            i = i-1
+        a_list[i]=value
     return a_list
 
-
-def bubble_sort_2(a_list):
-    list_length = len(a_list) -1
-    for i in range(list_length):
-        for j in range(list_length-i): # 맨 오른쪽에 큰 숫자를 뒀으니 왼쪽 정렬만 보겠다
-            if a_list[j] > a_list [j+1]:
-                a_list[j],a_list[j+1] = a_list[j+1], a_list[j]
-    return a_list
-
-
-def bubble_sort_3(a_list):
-    list_length = len(a_list) -1
-    for i in range(list_length):
-        no_swaps = True
-        for j in range(list_length-i): # 맨 오른쪽에 큰 숫자를 뒀으니 왼쪽 정렬만 보겠다
-            if a_list[j] > a_list [j+1]:
-                a_list[j],a_list[j+1] = a_list[j+1], a_list[j]
-                no_swaps = False
-    return a_list
-
-
-list = [4, 6, 2, 8, 1, 20]
-print(bubble_sort_1(list))
-print(bubble_sort_2(list))
-print(bubble_sort_3(list))
+a= [6, 5, 2, 8]
+print(insertion_sort(a))
